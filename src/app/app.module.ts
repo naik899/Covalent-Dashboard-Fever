@@ -12,6 +12,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { TokensComponent } from './pages/tokens/tokens.component';
+import { PairsComponent } from './pages/pairs/pairs.component';
+import { AccountsComponent } from './pages/accounts/accounts.component';
+import { AccountComponent } from './pages/account/account.component';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { ComponentsModule } from './components/components.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    TokensComponent,
+    PairsComponent,
+    AccountsComponent,
+    AccountComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
