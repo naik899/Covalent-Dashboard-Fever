@@ -11,7 +11,7 @@ export class EcosystemService {
 
   getEcosystemInfo(): Promise<any>
   {
-    let ecoSystemInfoEndPoint = (environment.apiUrl) + environment.chainId +"/xy=k/sushiswap/ecosystem/?key=" + environment.apiKey;
+    let ecoSystemInfoEndPoint = (environment.apiUrl) + environment.chainId +"/xy=k/"+ environment.dexName+"/ecosystem/?key=" + environment.apiKey;
     return this.httpClient.get<any>(ecoSystemInfoEndPoint).toPromise();
   }
 }

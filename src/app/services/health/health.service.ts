@@ -14,7 +14,7 @@ export class HealthService{
 
 
   getHealthStatus(): Promise<any>{
-    let healthEndPoint = (environment.apiUrl) + environment.chainId +"/xy=k/sushiswap/health/?key=" + environment.apiKey;
+    let healthEndPoint = (environment.apiUrl) + environment.chainId +"/xy=k/"+ environment.dexName+"/health/?key=" + environment.apiKey;
     return this.httpClient.get<any>(healthEndPoint).toPromise();
   }
 }
