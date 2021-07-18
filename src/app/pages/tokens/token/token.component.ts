@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/services/tokens/token.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class TokenComponent implements OnInit {
   public pools: any;
   public limit = 5;
 
-  constructor(private router: Router,private route: ActivatedRoute, private tokenService: TokenService) { }
+  constructor(private router: Router,private route: ActivatedRoute, private tokenService: TokenService, private toastrService: ToastrService) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -44,7 +45,7 @@ export class TokenComponent implements OnInit {
   public async prevPage(){
     if(this.currentPageNo == 1)
     {
-      alert("No such records exists")
+      this.toastrService.error("No such records exists");
     }
     else{
      
@@ -59,7 +60,7 @@ export class TokenComponent implements OnInit {
      
     }
     else{
-      alert("No such records exists");
+      this.toastrService.error("No such records exists");
     }
   }
 

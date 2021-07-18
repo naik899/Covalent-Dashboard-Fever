@@ -18,6 +18,7 @@ import { AccountsComponent } from './pages/accounts/accounts.component';
 import { AccountComponent } from './pages/account/account.component';
 import { TokenComponent } from './pages/tokens/token/token.component';
 import { PairComponent } from './pages/pairs/pair/pair.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PairComponent } from './pages/pairs/pair/pair.component';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -39,7 +41,8 @@ import { PairComponent } from './pages/pairs/pair/pair.component';
     AccountsComponent,
     AccountComponent,
     TokenComponent,
-    PairComponent
+    PairComponent,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

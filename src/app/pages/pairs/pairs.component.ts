@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/services/tokens/token.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class PairsComponent implements OnInit {
   public pools: any;
   public limit = 5;
 
-  constructor(private pairService: TokenService) { }
+  constructor(private pairService: TokenService, private toastrService: ToastrService) { }
 
   async ngOnInit(): Promise<void> {
     let pairInfo = await this.pairService.getPoolsInfo(this.currentPageNo -1, this.limit);
@@ -30,7 +31,7 @@ export class PairsComponent implements OnInit {
   public async prevPage(){
     if(this.currentPageNo == 1)
     {
-      alert("No such records exists")
+      this.toastrService.error("No such records exists");
     }
     else{
       this.currentPageNo--;
@@ -49,7 +50,7 @@ export class PairsComponent implements OnInit {
       this.pools = [...tokenInfo.data.items];
     }
     else{
-      alert("No such records exists");
+      this.toastrService.error("No such records exists");
     }
   }
 

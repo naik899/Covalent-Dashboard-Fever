@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { TokenService } from 'src/app/services/tokens/token.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class TokensComponent implements OnInit {
 
   
 
-  constructor(private tokenService: TokenService) { }
+  constructor(private tokenService: TokenService, private toastrService: ToastrService) { }
 
   async ngOnInit(): Promise<void> {
 
@@ -32,7 +33,7 @@ export class TokensComponent implements OnInit {
   public async prevPage(){
     if(this.currentPageNo == 1)
     {
-      alert("No such records exists")
+      this.toastrService.error("No such records exists");
     }
     else{
       this.currentPageNo--;
@@ -51,7 +52,7 @@ export class TokensComponent implements OnInit {
       this.tokens = [...tokenInfo.data.items];
     }
     else{
-      alert("No such records exists");
+      this.toastrService.error("No such records exists");
     }
   }
 
