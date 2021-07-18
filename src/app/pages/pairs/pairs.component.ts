@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { TokenService } from 'src/app/services/tokens/token.service';
 
 @Component({
   selector: 'app-pairs',
@@ -6,10 +8,49 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pairs.component.css']
 })
 export class PairsComponent implements OnInit {
+  public currentPageNo: number = 1;
+  public totalPages: number = 1;
+  public pools: any;
+  public limit = 5;
 
-  constructor() { }
+  constructor(private pairService: TokenService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    let pairInfo = await this.pairService.getPoolsInfo(this.currentPageNo -1, this.limit);
+    this.pools = [...pairInfo.data.items];
+    this.totalPages = pairInfo.data.pagination.total_count/this.limit;
+    console.log(this.pools);
+
+  }
+
+  getPrecision(value: string, contractDecimal: number){
+    return (Number.parseFloat(value)/Math.pow(10, contractDecimal)).toPrecision(10);
+  }
+
+  public async prevPage(){
+    if(this.currentPageNo == 1)
+    {
+      alert("No such records exists")
+    }
+    else{
+      this.currentPageNo--;
+      let poolInfo =await this.pairService.getPoolsInfo(this.currentPageNo - 1, this.limit);
+      this.pools = [...poolInfo.data.items];
+
+    }
+
+  }
+
+  async nextPage(){
+    if(this.currentPageNo-1 <= this.totalPages && this.pools.length == this.limit)
+    {
+      this.currentPageNo++;
+      let tokenInfo =await this.pairService.getTokensInfo(this.currentPageNo - 1, this.limit);
+      this.pools = [...tokenInfo.data.items];
+    }
+    else{
+      alert("No such records exists");
+    }
   }
 
 }

@@ -16,6 +16,8 @@ import { TokensComponent } from './pages/tokens/tokens.component';
 import { PairsComponent } from './pages/pairs/pairs.component';
 import { AccountsComponent } from './pages/accounts/accounts.component';
 import { AccountComponent } from './pages/account/account.component';
+import { TokenComponent } from './pages/tokens/token/token.component';
+import { PairComponent } from './pages/pairs/pair/pair.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { AccountComponent } from './pages/account/account.component';
     TokensComponent,
     PairsComponent,
     AccountsComponent,
-    AccountComponent
+    AccountComponent,
+    TokenComponent,
+    PairComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

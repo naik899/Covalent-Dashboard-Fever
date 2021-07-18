@@ -8,6 +8,9 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { TokensComponent } from 'src/app/pages/tokens/tokens.component';
 import { PairsComponent } from 'src/app/pages/pairs/pairs.component';
 import { AccountsComponent } from 'src/app/pages/accounts/accounts.component';
+import { TokenComponent } from 'src/app/pages/tokens/token/token.component';
+import { PairComponent } from 'src/app/pages/pairs/pair/pair.component';
+import { AccountComponent } from 'src/app/pages/account/account.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -18,5 +21,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tokens',           component: TokensComponent },
     { path: 'pairs',           component: PairsComponent },
     { path: 'accounts',           component: AccountsComponent },
+    {path: 'token/:id', component: TokenComponent},
+    {path: 'pair/:id', component: PairComponent},
+    {path: 'account/:id', component: AccountComponent},
 
 ];

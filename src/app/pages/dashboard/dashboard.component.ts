@@ -36,6 +36,8 @@ export class DashboardComponent implements OnInit {
   public tokens: any;
   public pools: any;
 
+  public totalVolume : number = 0;
+
   async ngOnInit() {
 
     this.ecosystem = await this.platformService.getEcosystemInfo();
@@ -62,6 +64,12 @@ export class DashboardComponent implements OnInit {
     this.tokens = await this.tokenService.getTokensInfo(0, 5);
     this.tokens = this.tokens.data.items;
 
+    let volume7d = this.ecosystem.data.items[0].volume_chart_7d;
+    
+    volume7d.forEach(elem => {
+
+      this.totalVolume += elem.volume_quote;
+    });
 
     this.pools = await this.tokenService.getPoolsInfo(0,5);
     this.pools = this.pools.data.items;

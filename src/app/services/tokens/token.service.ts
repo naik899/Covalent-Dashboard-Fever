@@ -21,4 +21,36 @@ export class TokenService {
     
     return this.httpClient.get<any>(getPoolsInfoEndPoint).toPromise();
   }
+
+  getPoolInfoByAddress(tokenAddress: string): Promise<any>{
+    let getPoolInfoByAddressEndpoint = (environment.apiUrl) + environment.chainId + "/xy=k/sushiswap/pools/address/"+ tokenAddress +"/?key=" + environment.apiKey;
+    return this.httpClient.get<any>(getPoolInfoByAddressEndpoint).toPromise();
+  }
+
+  getPoolTransactionsInfoByAddress(tokenAddress: string): Promise<any>{
+    let getPoolTransactionsInfoByAddressEndPoint = (environment.apiUrl) + environment.chainId + "/xy=k/sushiswap/pools/address/"+ tokenAddress +"/transactions/?key=" + environment.apiKey;
+    return this.httpClient.get<any>(getPoolTransactionsInfoByAddressEndPoint).toPromise();
+  }
+
+  getTokenInfoByAddress(tokenAddress: string): Promise<any>{
+    let getTokenInfoByAddressEndpoint = (environment.apiUrl) + environment.chainId + "/xy=k/sushiswap/tokens/address/"+ tokenAddress +"/?key=" + environment.apiKey;
+    return this.httpClient.get<any>(getTokenInfoByAddressEndpoint).toPromise();
+  }
+
+  getPoolTokenTransactionsInfoByAddress(tokenAddress: string): Promise<any>{
+    let getPoolTokenTransactionsInfoByAddressEndpoint = (environment.apiUrl) + environment.chainId + "/xy=k/sushiswap/tokens/address/"+ tokenAddress +"/transactions/?key=" + environment.apiKey;
+    return this.httpClient.get<any>(getPoolTokenTransactionsInfoByAddressEndpoint).toPromise();
+  }
+
+  getLiquidityPairBalancesByAddressExchange(tokenAddress: string): Promise<any>{
+    let getLiquidityPairBalancesByAddressEndpoint = (environment.apiUrl) + environment.chainId + "/xy=k/sushiswap/address/"+ tokenAddress +"/balances/?key=" + environment.apiKey;
+    return this.httpClient.get<any>(getLiquidityPairBalancesByAddressEndpoint).toPromise();
+  }
+
+  getLiquidityTransactionsByAddressExchange(tokenAddress: string): Promise<any>{
+    let getLiquidityTransactionsByAddressExchangeEndpoint = (environment.apiUrl) + environment.chainId + "/xy=k/sushiswap/address/"+ tokenAddress +"/transactions/?key=" + environment.apiKey;
+    return this.httpClient.get<any>(getLiquidityTransactionsByAddressExchangeEndpoint).toPromise();
+  }
+
+  
 }
