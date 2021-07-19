@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from 'src/app/loader.service';
 import { TokenService } from 'src/app/services/tokens/token.service';
 
 @Component({
@@ -14,13 +15,15 @@ export class PairsComponent implements OnInit {
   public pools: any;
   public limit = 5;
 
-  constructor(private pairService: TokenService, private toastrService: ToastrService) { }
+  constructor(private pairService: TokenService, private toastrService: ToastrService, private loader:LoaderService) { }
 
   async ngOnInit(): Promise<void> {
+    this.loader.showloader();
     let pairInfo = await this.pairService.getPoolsInfo(this.currentPageNo -1, this.limit);
     this.pools = [...pairInfo.data.items];
     this.totalPages = pairInfo.data.pagination.total_count/this.limit;
     console.log(this.pools);
+    this.loader.hideloader()
 
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from 'src/app/loader.service';
 import { TokenService } from 'src/app/services/tokens/token.service';
 
 @Component({
@@ -17,10 +18,10 @@ export class TokenComponent implements OnInit {
   public pools: any;
   public limit = 5;
 
-  constructor(private router: Router,private route: ActivatedRoute, private tokenService: TokenService, private toastrService: ToastrService) { }
+  constructor(private router: Router,private route: ActivatedRoute, private tokenService: TokenService, private toastrService: ToastrService,private loader:LoaderService) { }
 
   async ngOnInit(): Promise<void> {
-
+    this.loader.showloader();
     const routeParams = this.route.snapshot.paramMap;
     let id = String(routeParams.get('id'));
     let tokenInfo = await this.tokenService.getTokenInfoByAddress(id);
@@ -30,6 +31,7 @@ export class TokenComponent implements OnInit {
 
     console.log(this.tokenPairs);
     console.log(this.transactions);
+    this.loader.hideloader();
   }
 
 
