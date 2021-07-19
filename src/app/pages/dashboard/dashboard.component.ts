@@ -30,6 +30,9 @@ export class DashboardComponent implements OnInit {
   public volumesChart;
   public clicked: boolean = true;
   public clicked1: boolean = false;
+  public clicked2 = true;
+  public clicked3 = false;
+
   public daysView : boolean = false;
   public volumeDaysView : boolean = false;
 
@@ -122,8 +125,7 @@ export class DashboardComponent implements OnInit {
 
 
   public updateOptions() {
-
-    this.updateVolumeOptions();
+    // this.updateVolumeOptions();
     let liquidity7d = this.ecosystem.data.items[0].liquidity_chart_7d;
     let liquidity30d = this.ecosystem.data.items[0].liquidity_chart_30d;
     
