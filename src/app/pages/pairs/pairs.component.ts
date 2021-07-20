@@ -46,10 +46,11 @@ export class PairsComponent implements OnInit {
   }
 
   async nextPage(){
+    debugger;
     if(this.currentPageNo-1 <= this.totalPages && this.pools.length == this.limit)
     {
       this.currentPageNo++;
-      let tokenInfo =await this.pairService.getTokensInfo(this.currentPageNo - 1, this.limit);
+      let tokenInfo =await this.pairService.getPoolsInfo(this.currentPageNo - 1, this.limit);
       this.pools = [...tokenInfo.data.items];
     }
     else{
